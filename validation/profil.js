@@ -6,7 +6,7 @@ module.exports = function ValidateProfile(data) {
 
   data.tel = !isEmpty(data.tel) ? data.tel : "";
   data.city = !isEmpty(data.city) ? data.city : "";
-  data.country = !isEmpty(data.country) ? data.country : "";
+  data.bio = !isEmpty(data.country) ? data.bio : "";
   data.postalcode = !isEmpty(data.postalcode) ? data.postalcode : "";
 
   if (validator.isEmpty(data.tel)) {
@@ -16,8 +16,8 @@ module.exports = function ValidateProfile(data) {
   if (validator.isEmpty(data.city)) {
     errors.city = "Required city";
   }
-  if (validator.isEmpty(data.country)) {
-    errors.country = "Required country";
+  if (validator.isEmpty(data.bio)) {
+    errors.bio = "Required bio";
   }
   
   if (validator.isEmpty(data.postalcode)) {
