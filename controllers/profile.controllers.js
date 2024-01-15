@@ -1,6 +1,7 @@
 const ProfilModel = require("../models/profil.models");
 const ValidateProfile = require("../validation/profil")
 
+
 const AddProfile = async (req ,res)=>{
     const {errors, isValid} = ValidateProfile(req.body)
     try {
