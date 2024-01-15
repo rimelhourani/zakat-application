@@ -14,11 +14,11 @@ var router = express.Router();
 router.post("/register", Register);
 router.post("/login", Login);
 /*PROFILES */
-router.post(
-  "/profiles",
-  passport.authenticate("jwt", { session: false }),
-  AddProfile
-);
+router.post("/profiles", 
+passport.authenticate("jwt", { session: false }),
+AddProfile);
+
+
 router.get(
   "/profiles",
   passport.authenticate("jwt", { session: false }),

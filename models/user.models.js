@@ -9,6 +9,7 @@ const UserModel = new Schema(
       unique: true,
     },
     password: "String",
+    confirm: "String",
     role: "String",
   },
 
