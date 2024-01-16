@@ -58,8 +58,10 @@ const DeleteProfile = async (req ,res)=>{
      }
 }
 module.exports = {
-  Register,
-  Login,
+    AddProfile,
+    FindAllProfiles,
+    FindSingleProfile,
+    DeleteProfile,
 
 };
 

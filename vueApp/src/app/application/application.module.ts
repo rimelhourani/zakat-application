@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApplicationRoutingModule } from './application-routing.module';
-import { CalculatorComponent } from './calculator/application.component';
+import { CalculatorComponent } from './calculator/calculator.component';
 
 
 
