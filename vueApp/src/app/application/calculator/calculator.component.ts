@@ -13,16 +13,12 @@ import { debounceTime } from 'rxjs/operators';
   styleUrls: ['./calculator.component.css']
 })
 export class CalculatorComponent implements OnInit {
-  myForm!: FormGroup;
+  primyForm : FormGroup;
   
   // this.formulaire = this.fb.group({
   //   fullname: [''],
   //   email: [''],
   //   classe: [''],
-  // });  formulaire = new FormGroup({
-  //   fullname: new FormControl(),
-  //   email: new FormControl(),
-  //   classe: new FormControl(),
   // });
   
   cachHome: string = '';
@@ -56,7 +52,17 @@ export class CalculatorComponent implements OnInit {
  
  xagXauRates: { currency: string; value: number }[] = [];
   ngOnInit(): void {
-     
+   
+
+    this.myForm.get('gold').valueChanges
+    .pipe(debounceTime(500)) // adjust the debounce time as needed
+    .subscribe(value => {
+      // This will be called after the user stops typing for 500 milliseconds
+      console.log(value);
+      // Do whatever you want with the value, e.g., send it to a service, update a variable, etc.
+    });
+
+    
     this.metalPriceService.getCurrentMetalPrice().subscribe(
       (data:PriceMetal[]) => {
         this.metals = data;
@@ -69,24 +75,6 @@ export class CalculatorComponent implements OnInit {
       }
     );
   
-    this.myForm = this.fb.group({
-      gold: [''] // Ensure 'gold' is defined here
-    });
-    const goldControl = this.myForm.get('gold');
-
-    if (goldControl) {
-      goldControl.valueChanges
-        .pipe(debounceTime(500)) // adjust the debounce time as needed
-        .subscribe(value => {
-          // This will be called after the user stops typing for 500 milliseconds
-          console.log("********** gold qte : ",value);
-          this.Gold = value;
-          console.log("******* gold var value", this.Gold)
-          // Do whatever you want with the value, e.g., send it to a service, update a variable, etc.
-        });
-    } else {
-      console.error("Form control 'gold' not found");
-    }
   }
   getObjectKeys(obj: any): string[] {
     return Object.keys(obj);
