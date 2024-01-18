@@ -10,6 +10,26 @@
     <link rel="stylesheet" href="calculator.component.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+ <h1>rates :</h1>
+          <table class="table table-dark">
+              <thead>
+                <tr>
+                  <th scope="col">key</th>
+                  <th scope="col">value</th>
+                </tr>
+              </thead>
+              
+              <tbody>
+                <tr *ngFor="let x of metals.rates | keyvalue ">
+                  <td *ngIf="x.key === 'XAG' || x.key === 'XAU'">{{ x.key}}</td>
+                  <td *ngIf="x.key === 'XAG' || x.key === 'XAU'">{{ x.value}}</td>
+                
+                </tr>
+              </tbody>
+            </table>  
+            <div *ngFor="let rate of xagXauRates">
+                {{ rate.currency }}: {{ rate.value }}
+              </div>
 
 <body>
     <div class="container">
@@ -29,42 +49,42 @@
                     <div class="input-field">
                         <div class="input-field-1">
                             <div>
-                                <form autocomplete="off">
+                                <form [formGroup]="myForm" autocomplete="off">
                                     <div class="input-field-text">
                                         <h1>Assets <span id="totle-g"></span></h1>
                                     </div>
                                     <div class="inputBox">
-                                        <input id="input-1" type="number" required="required">
-                                        <span>Enter Cash in Your Home:</span>
+                                        <input id="input-1"  required="required" [(ngModel)]="cachHome" name="cachHome">
+                                        <span>Enter Cash in Your Home:{{cachHome}}</span>
                                         <i></i>
                                     </div>
                                     <div class="inputBox">
-                                        <input id="input-1" type="number" required="required">
-                                        <span>Enter money owed to you:</span>
+                                        <input id="input-1" required="required" [(ngModel)]="owedToYou" name="owedToYou">
+                                        <span>Enter money owed to you:{{owedToYou}}</span>
                                         <i></i>
                                     </div>
                                     <div class="inputBox">
-                                        <input id="input-1" type="number" required="required">
-                                        <span>Enter bank saving:</span>
+                                        <input id="input-1"  required="required" [(ngModel)]="bankSaving" name="bankSaving">
+                                        <span>Enter bank saving:{{bankSaving}}</span>
                                         <i></i>
                                     </div>
                                     <div class="inputBox">
-                                        <input id="input-1" type="number" required="required">
-                                        <span>Enter other assets:</span>
+                                        <input id="input-1"  required="required" [(ngModel)]="otherAssets" name="otherAssets">
+                                        <span>Enter other assets:{{otherAssets}}</span>
                                         <i></i>
                                     </div>
-                                    <div class="inputBox">
-                                        <input id="input-2" type="number" required="required">
-                                        <span>Enter Gold:</span>
+                                    <div class="inputBox" >
+                                        <input id="input-2" formControlName="gold" required="required" [(ngModel)]="Gold" name="Gold">
+                                        <span>Enter Gold:{{Gold}}</span>
                                         <i></i>
                                     </div>
-                                     <div class="input-field-text">
-                                            <h3>Total value of Gold: <span id="totle-g"></span></h3>
+                                     <div class="input-field-text" > 
+                                            <h3 >Total value of Gold: <span id="totle-g"></span></h3>
                                         </div>
                                     
                                     <div class="inputBox">
-                                        <input id="input-3" type="number" required="required">
-                                        <span>Enter Silver:</span>
+                                        <input id="input-3" formControlName="silver"  required="required" [(ngModel)]="Silver" name="Silver">
+                                        <span>Enter Silver:{{Silver}}</span>
                                         <i></i>
                                     </div>
                                     <div class="input-field-text">
@@ -77,8 +97,8 @@
                                         <h1>Liabilities <span id="totle-g"></span></h1>
                                     </div>
                                     <div class="inputBox">
-                                        <input id="input-2" type="number" required="required">
-                                        <span>Enter debt you owe:</span>
+                                        <input id="input-2"  required="required" [(ngModel)]="Liabilities" name="Liabilities">
+                                        <span>Enter debt you owe:{{Liabilities}}</span>
                                         <i></i>
                                     </div>
                                     
@@ -107,14 +127,28 @@
             
         </div>
     </div>
-
     <div>
-        <h2>Current Metal Prices</h2>
-        <ul>
-          <li *ngFor="let metal of currentMetalPrices.metals | keyvalue">
-            {{ metal.key }}: {{ metal.value }}
-          </li>
-        </ul>
+        <h1>metals :</h1>
+        <table class="table table-dark">
+            <thead>
+              <tr>
+                <th scope="col">success</th>
+                <th scope="col">baseCurrency</th>
+                <th scope="col">rates</th>
+              </tr>
+            </thead>
+            
+            <tbody>
+              <tr *ngFor="let metal of metals | keyvalue">
+                <td>{{metal.key}}</td>
+                <td>{{metal.value}}</td>
+                <!-- <td *ngIf="metal.key== 'rates'">{{ metal.rates['EUR'] }}</td> -->
+                
+              </tr>
+            </tbody>
+          </table>
+          
+
       </div>
 
     <script src="app.js"></script>
